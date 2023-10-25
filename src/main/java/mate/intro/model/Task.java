@@ -12,15 +12,14 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.time.LocalDate;
+import java.util.List;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
-
-import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @Data
@@ -36,17 +35,18 @@ public class Task {
     private String name;
     @Column(nullable = false)
     private String description;
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Priority priority;
     @Enumerated(EnumType.STRING)
     private Status status;
-    @Column(nullable = false)
+    @Column(name = "due_date", nullable = false)
     private LocalDate dueDate;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "project_id", nullable = false, referencedColumnName = "id")
     private Project project;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false, referencedColumnName = "id")
+    @JoinColumn(name = "assignee_id", nullable = false, referencedColumnName = "id")
     private User assignee;
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "task")
     @ToString.Exclude

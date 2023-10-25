@@ -9,18 +9,17 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
-import java.time.LocalDateTime;
-
 @Entity
 @Data
 @SQLDelete(sql = "UPDATE attachments SET is_deleted = true WHERE id=?")
 @Where(clause = "is_deleted=false")
-@Table(name = "attachtments")
+@Table(name = "attachments")
 @Accessors(chain = true)
 public class Attachment {
     @Id
