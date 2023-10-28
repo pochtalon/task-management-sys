@@ -17,3 +17,7 @@ databaseChangeLog:
       file: db/changelog/changes/08-create-labels-table.yaml
   - include:
       file: db/changelog/changes/09-create-tasks_labels-table.yaml
+  - include:
+      file: db/changelog/changes/10-insert-roles-into-table.yaml
+  - include:
+      file: db/changelog/changes/11-insert-admin-into-table.yaml

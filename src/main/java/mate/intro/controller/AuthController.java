@@ -7,6 +7,7 @@ import mate.intro.dto.user.UserLoginResponseDto;
 import mate.intro.dto.user.UserRegistrationRequestDto;
 import mate.intro.dto.user.UserResponseDto;
 import mate.intro.exception.RegistrationException;
+import mate.intro.security.AuthenticationService;
 import mate.intro.service.UserService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/auth")
 public class AuthController {
     private final UserService userService;
+    private final AuthenticationService authenticationService;
+
     @PostMapping("/register")
     public UserResponseDto register(@RequestBody @Valid UserRegistrationRequestDto request)
             throws RegistrationException {
@@ -26,6 +29,6 @@ public class AuthController {
 
     @PostMapping("/login")
     public UserLoginResponseDto login(@RequestBody @Valid UserLoginRequestDto request) {
-
+        return authenticationService.authenticate(request);
     }
 }
