@@ -17,8 +17,8 @@ import org.hibernate.annotations.Where;
 
 @Entity
 @Data
-@SQLDelete(sql = "UPDATE comments SET is_deleted = true WHERE id=?")
-@Where(clause = "is_deleted=false")
+@SQLDelete(sql = "UPDATE comments SET is_deleted = TRUE WHERE id = ?")
+@Where(clause = "is_deleted = FALSE")
 @Table(name = "comments")
 @Accessors(chain = true)
 public class Comment {

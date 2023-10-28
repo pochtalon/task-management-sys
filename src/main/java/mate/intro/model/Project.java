@@ -21,8 +21,8 @@ import org.hibernate.annotations.Where;
 
 @Entity
 @Data
-@SQLDelete(sql = "UPDATE projects SET is_deleted = true WHERE id=?")
-@Where(clause = "is_deleted=false")
+@SQLDelete(sql = "UPDATE projects SET is_deleted = TRUE WHERE id = ?")
+@Where(clause = "is_deleted = FALSE")
 @Table(name = "projects")
 @Accessors(chain = true)
 public class Project {
@@ -40,7 +40,7 @@ public class Project {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Status status;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "project")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "project")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private List<Task> tasks;
