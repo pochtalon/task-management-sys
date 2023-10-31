@@ -32,8 +32,8 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "username", nullable = false, unique = true)
-    private String username;
+    @Column(name = "nickname", nullable = false, unique = true)
+    private String nickname;
     @Column(nullable = false)
     private String password;
     @Column(name = "email", nullable = false, unique = true)
@@ -57,6 +57,10 @@ public class User implements UserDetails {
         return roles.stream()
                 .map(r -> new SimpleGrantedAuthority(r.getName().name()))
                 .toList();
+    }
+
+    public String getNickname() {
+        return nickname;
     }
 
     @Override

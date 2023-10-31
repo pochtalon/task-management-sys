@@ -1,4 +1,4 @@
-package mate.intro.dto.user.auth;
+package mate.intro.dto.user;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -7,7 +7,7 @@ import lombok.experimental.Accessors;
 
 @Data
 @Accessors(chain = true)
-public class UserRegistrationRequestDto {
+public class UpdateUserInfoRequestDto {
     @NotBlank
     @Size(min = 8, max = 50)
     private String email;

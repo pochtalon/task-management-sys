@@ -30,7 +30,6 @@ public class UserController {
     public UpdateRolesResponseDto updateRoles(Authentication authentication,
                                               @PathVariable Long id,
                                               @RequestBody UpdateRolesRequestDto rolesRequest) {
-        System.out.println(authentication.getPrincipal());
         return userService.updateRoles(id, rolesRequest);
     }
 
@@ -39,8 +38,6 @@ public class UserController {
     @Operation(summary = "Get user info", description = "Get info for current user")
     public UserInfoDto getUserInfo(Authentication authentication) {
         User user = (User) authentication.getPrincipal();
-        System.out.println("User: " + user.toString());
-        // todo: wrong username, fix it!package
         return userService.getUserInfo(user);
     }
 }
