@@ -6,12 +6,12 @@ import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import mate.intro.dto.role.UpdateRolesRequestDto;
 import mate.intro.dto.role.UpdateRolesResponseDto;
+import mate.intro.dto.user.UpdateUserInfoRequestDto;
 import mate.intro.dto.user.UserInfoDto;
 import mate.intro.dto.user.auth.UserRegistrationRequestDto;
 import mate.intro.dto.user.auth.UserResponseDto;
 import mate.intro.exception.EntityNotFoundException;
 import mate.intro.exception.RegistrationException;
-import mate.intro.mapper.RoleMapper;
 import mate.intro.mapper.UserMapper;
 import mate.intro.model.Role;
 import mate.intro.model.User;
@@ -27,7 +27,6 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final UserMapper userMapper;
-    private final RoleMapper roleMapper;
     private final RoleRepository roleRepository;
 
     @Override
@@ -60,6 +59,32 @@ public class UserServiceImpl implements UserService {
     public UserInfoDto getUserInfo(User user) {
         return userMapper.toInfoDto(user);
 
+    }
+
+    @Override
+    public UserInfoDto updateUserInfo(User user, UpdateUserInfoRequestDto infoRequest) {
+        userUpdate(user, infoRequest);
+        return userMapper.toInfoDto(userRepository.save(user));
+    }
+
+    private void userUpdate(User user, UpdateUserInfoRequestDto infoRequest) {
+        if (infoRequest.getPassword() != null
+                && infoRequest.getPasswordRepeat() != null
+                && infoRequest.getPassword().equals(infoRequest.getPasswordRepeat())) {
+           user.setPassword(passwordEncoder.encode(infoRequest.getPassword()));
+        }
+        if (infoRequest.getEmail() != null) {
+            user.setEmail(infoRequest.getEmail());
+        }
+        if (infoRequest.getNickname() != null) {
+            user.setNickname(infoRequest.getNickname());
+        }
+        if (infoRequest.getFirstName() != null) {
+            user.setFirstName(infoRequest.getFirstName());
+        }
+        if (infoRequest.getLastName() != null) {
+            user.setLastName(infoRequest.getLastName());
+        }
     }
 
     private Set<Role> getRolesForUser(UpdateRolesRequestDto rolesRequest) {

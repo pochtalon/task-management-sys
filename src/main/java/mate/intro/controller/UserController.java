@@ -5,12 +5,14 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import mate.intro.dto.role.UpdateRolesRequestDto;
 import mate.intro.dto.role.UpdateRolesResponseDto;
+import mate.intro.dto.user.UpdateUserInfoRequestDto;
 import mate.intro.dto.user.UserInfoDto;
 import mate.intro.model.User;
 import mate.intro.service.UserService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -39,5 +41,14 @@ public class UserController {
     public UserInfoDto getUserInfo(Authentication authentication) {
         User user = (User) authentication.getPrincipal();
         return userService.getUserInfo(user);
+    }
+
+    @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+    @PutMapping("/me")
+    @Operation(summary = "Update user info", description = "Change info for current user")
+    public UserInfoDto updateUserInfo(Authentication authentication,
+                                              @RequestBody UpdateUserInfoRequestDto infoRequest) {
+        User user = (User) authentication.getPrincipal();
+        return userService.updateUserInfo(user, infoRequest);
     }
 }
