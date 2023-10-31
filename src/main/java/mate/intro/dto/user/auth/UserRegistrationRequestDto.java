@@ -1,4 +1,4 @@
-package mate.intro.dto.user;
+package mate.intro.dto.user.auth;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

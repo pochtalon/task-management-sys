@@ -1,8 +1,8 @@
 package mate.intro.security;
 
 import lombok.RequiredArgsConstructor;
-import mate.intro.dto.user.UserLoginRequestDto;
-import mate.intro.dto.user.UserLoginResponseDto;
+import mate.intro.dto.user.auth.UserLoginRequestDto;
+import mate.intro.dto.user.auth.UserLoginResponseDto;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;

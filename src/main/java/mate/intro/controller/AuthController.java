@@ -2,10 +2,10 @@ package mate.intro.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import mate.intro.dto.user.UserLoginRequestDto;
-import mate.intro.dto.user.UserLoginResponseDto;
-import mate.intro.dto.user.UserRegistrationRequestDto;
-import mate.intro.dto.user.UserResponseDto;
+import mate.intro.dto.user.auth.UserLoginRequestDto;
+import mate.intro.dto.user.auth.UserLoginResponseDto;
+import mate.intro.dto.user.auth.UserRegistrationRequestDto;
+import mate.intro.dto.user.auth.UserResponseDto;
 import mate.intro.exception.RegistrationException;
 import mate.intro.security.AuthenticationService;
 import mate.intro.service.UserService;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/auth")
 public class AuthController {
     private final UserService userService;
     private final AuthenticationService authenticationService;
