@@ -32,11 +32,11 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "nickname", nullable = false, unique = true)
+    @Column(nullable = false, unique = true)
     private String nickname;
     @Column(nullable = false)
     private String password;
-    @Column(name = "email", nullable = false, unique = true)
+    @Column(nullable = false, unique = true)
     private String email;
     @Column(name = "first_name", nullable = false)
     private String firstName;

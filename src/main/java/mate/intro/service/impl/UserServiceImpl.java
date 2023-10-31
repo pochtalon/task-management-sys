@@ -6,7 +6,7 @@ import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import mate.intro.dto.role.UpdateRolesRequestDto;
 import mate.intro.dto.role.UpdateRolesResponseDto;
-import mate.intro.dto.user.UpdateUserInfoRequestDto;
+import mate.intro.dto.user.UserUpdateInfoRequestDto;
 import mate.intro.dto.user.UserInfoDto;
 import mate.intro.dto.user.auth.UserRegistrationRequestDto;
 import mate.intro.dto.user.auth.UserResponseDto;
@@ -62,12 +62,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserInfoDto updateUserInfo(User user, UpdateUserInfoRequestDto infoRequest) {
+    public UserInfoDto updateUserInfo(User user, UserUpdateInfoRequestDto infoRequest) {
         userUpdate(user, infoRequest);
         return userMapper.toInfoDto(userRepository.save(user));
     }
 
-    private void userUpdate(User user, UpdateUserInfoRequestDto infoRequest) {
+    private void userUpdate(User user, UserUpdateInfoRequestDto infoRequest) {
         if (infoRequest.getPassword() != null
                 && infoRequest.getPasswordRepeat() != null
                 && infoRequest.getPassword().equals(infoRequest.getPasswordRepeat())) {

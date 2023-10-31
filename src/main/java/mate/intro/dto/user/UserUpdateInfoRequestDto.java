@@ -6,7 +6,7 @@ import lombok.experimental.Accessors;
 
 @Data
 @Accessors(chain = true)
-public class UpdateUserInfoRequestDto {
+public class UserUpdateInfoRequestDto {
     @Size(min = 8, max = 50)
     private String email;
     @Size(min = 8, max = 100)

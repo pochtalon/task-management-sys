@@ -2,7 +2,7 @@ package mate.intro.service;
 
 import mate.intro.dto.role.UpdateRolesRequestDto;
 import mate.intro.dto.role.UpdateRolesResponseDto;
-import mate.intro.dto.user.UpdateUserInfoRequestDto;
+import mate.intro.dto.user.UserUpdateInfoRequestDto;
 import mate.intro.dto.user.UserInfoDto;
 import mate.intro.dto.user.auth.UserRegistrationRequestDto;
 import mate.intro.dto.user.auth.UserResponseDto;
@@ -16,5 +16,5 @@ public interface UserService {
 
     UserInfoDto getUserInfo(User user);
 
-    UserInfoDto updateUserInfo(User user, UpdateUserInfoRequestDto infoRequest);
+    UserInfoDto updateUserInfo(User user, UserUpdateInfoRequestDto infoRequest);
 }
