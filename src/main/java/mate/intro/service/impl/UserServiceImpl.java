@@ -6,8 +6,8 @@ import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import mate.intro.dto.role.UpdateRolesRequestDto;
 import mate.intro.dto.role.UpdateRolesResponseDto;
-import mate.intro.dto.user.UserUpdateInfoRequestDto;
 import mate.intro.dto.user.UserInfoDto;
+import mate.intro.dto.user.UserUpdateInfoRequestDto;
 import mate.intro.dto.user.auth.UserRegistrationRequestDto;
 import mate.intro.dto.user.auth.UserResponseDto;
 import mate.intro.exception.EntityNotFoundException;
@@ -71,7 +71,7 @@ public class UserServiceImpl implements UserService {
         if (infoRequest.getPassword() != null
                 && infoRequest.getPasswordRepeat() != null
                 && infoRequest.getPassword().equals(infoRequest.getPasswordRepeat())) {
-           user.setPassword(passwordEncoder.encode(infoRequest.getPassword()));
+            user.setPassword(passwordEncoder.encode(infoRequest.getPassword()));
         }
         if (infoRequest.getEmail() != null) {
             user.setEmail(infoRequest.getEmail());

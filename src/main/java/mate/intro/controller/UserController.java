@@ -6,8 +6,8 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import mate.intro.dto.role.UpdateRolesRequestDto;
 import mate.intro.dto.role.UpdateRolesResponseDto;
-import mate.intro.dto.user.UserUpdateInfoRequestDto;
 import mate.intro.dto.user.UserInfoDto;
+import mate.intro.dto.user.UserUpdateInfoRequestDto;
 import mate.intro.model.User;
 import mate.intro.service.UserService;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -29,9 +29,9 @@ public class UserController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/{id}/role")
     @Operation(summary = "Update user role", description = "Change set of roles for user")
-    public UpdateRolesResponseDto updateRoles(@PathVariable Long id,
-                                              @RequestBody @Valid UpdateRolesRequestDto rolesRequest) {
-        return userService.updateRoles(id, rolesRequest);
+    public UpdateRolesResponseDto updateRoles(@RequestBody @Valid UpdateRolesRequestDto request,
+                                              @PathVariable Long id) {
+        return userService.updateRoles(id, request);
     }
 
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
@@ -46,7 +46,7 @@ public class UserController {
     @PutMapping("/me")
     @Operation(summary = "Update user info", description = "Change info for current user")
     public UserInfoDto updateUserInfo(Authentication authentication,
-                                              @RequestBody @Valid UserUpdateInfoRequestDto infoRequest) {
+                                      @RequestBody @Valid UserUpdateInfoRequestDto infoRequest) {
         User user = (User) authentication.getPrincipal();
         return userService.updateUserInfo(user, infoRequest);
     }

@@ -3,10 +3,12 @@ package mate.intro.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import mate.intro.dto.project.CreateProjectRequestDto;
 import mate.intro.dto.project.ProjectDto;
 import mate.intro.dto.project.UpdateProjectRequestDto;
+import mate.intro.dto.task.TaskWithoutProjectDto;
 import mate.intro.model.User;
 import mate.intro.service.ProjectService;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -19,8 +21,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @Tag(name = "Project management", description = "Endpoints for managing projects")
 @RequiredArgsConstructor
@@ -38,7 +38,8 @@ public class ProjectController {
 
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
     @GetMapping
-    @Operation(summary = "Get user's projects", description = "Get list of projects for current user")
+    @Operation(summary = "Get user's projects",
+            description = "Get list of projects for current user")
     public List<ProjectDto> getProjects(Authentication authentication) {
         User user = (User) authentication.getPrincipal();
         return projectService.getProjectsByUserId(user.getId());
@@ -52,8 +53,15 @@ public class ProjectController {
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("/{id}/tasks")
+    @Operation(summary = "Get tasks for project", description = "Get all tasks for project")
+    public List<TaskWithoutProjectDto> getTasksForProject(@PathVariable Long id) {
+        return projectService.getTaskForProject(id);
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/{id}")
-    @Operation(summary = "Get project by id", description = "Get project by id")
+    @Operation(summary = "Update project by id", description = "Update project by id")
     public ProjectDto updateProject(@PathVariable Long id,
                                     @RequestBody UpdateProjectRequestDto updateRequest) {
         return projectService.updateProject(id, updateRequest);

@@ -11,7 +11,7 @@ import org.mapstruct.Mapper;
 public interface ProjectMapper {
     Project toModel(CreateProjectRequestDto requestDto);
 
-    ProjectDto toDto(Project project);
+    Project toModel(UpdateProjectRequestDto updateRequest);
 
-    Project toUpdatesModel(UpdateProjectRequestDto updateRequest);
+    ProjectDto toDto(Project project);
 }

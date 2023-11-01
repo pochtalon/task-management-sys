@@ -2,8 +2,8 @@ package mate.intro.service;
 
 import mate.intro.dto.role.UpdateRolesRequestDto;
 import mate.intro.dto.role.UpdateRolesResponseDto;
-import mate.intro.dto.user.UserUpdateInfoRequestDto;
 import mate.intro.dto.user.UserInfoDto;
+import mate.intro.dto.user.UserUpdateInfoRequestDto;
 import mate.intro.dto.user.auth.UserRegistrationRequestDto;
 import mate.intro.dto.user.auth.UserResponseDto;
 import mate.intro.exception.RegistrationException;

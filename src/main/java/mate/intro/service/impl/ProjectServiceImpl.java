@@ -1,23 +1,27 @@
 package mate.intro.service.impl;
 
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import mate.intro.dto.project.CreateProjectRequestDto;
 import mate.intro.dto.project.ProjectDto;
 import mate.intro.dto.project.UpdateProjectRequestDto;
+import mate.intro.dto.task.TaskWithoutProjectDto;
 import mate.intro.exception.EntityNotFoundException;
 import mate.intro.mapper.ProjectMapper;
+import mate.intro.mapper.TaskMapper;
 import mate.intro.model.Project;
 import mate.intro.repository.ProjectRepository;
+import mate.intro.repository.TaskRepository;
 import mate.intro.service.ProjectService;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @Service
 public class ProjectServiceImpl implements ProjectService {
     private final ProjectRepository projectRepository;
+    private final TaskRepository taskRepository;
     private final ProjectMapper projectMapper;
+    private final TaskMapper taskMapper;
 
     @Override
     public ProjectDto save(CreateProjectRequestDto requestDto) {
@@ -44,7 +48,7 @@ public class ProjectServiceImpl implements ProjectService {
     public ProjectDto updateProject(Long id, UpdateProjectRequestDto updateRequest) {
         Project project = projectRepository.findById(id).orElseThrow(() ->
                 new EntityNotFoundException("Can't find project with id " + id));
-        Project updates = projectMapper.toUpdatesModel(updateRequest);
+        Project updates = projectMapper.toModel(updateRequest);
         correctProject(project, updates);
         return projectMapper.toDto(projectRepository.save(project));
     }
@@ -52,6 +56,13 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public void deleteProject(Long id) {
         projectRepository.deleteById(id);
+    }
+
+    @Override
+    public List<TaskWithoutProjectDto> getTaskForProject(Long id) {
+        return taskRepository.findAllByProjectId(id).stream()
+                .map(taskMapper::toDtoWithoutProject)
+                .toList();
     }
 
     private void correctProject(Project project, Project updates) {
