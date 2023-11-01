@@ -1,6 +1,7 @@
 package mate.intro.dto.task;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -15,8 +16,8 @@ public class CreateTaskRequestDto {
     private String priority;
     @NotBlank
     private String dueDate;
-    @NotBlank
+    @NotNull
     private Long projectId;
-    @NotBlank
+    @NotNull
     private Long assigneeId;
 }

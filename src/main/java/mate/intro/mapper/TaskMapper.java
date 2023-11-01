@@ -19,5 +19,6 @@ public interface TaskMapper {
     @Mapping(source = "assignee.nickname", target = "userNickname")
     TaskDto toDto(Task task);
 
+    @Mapping(source = "assignee.nickname", target = "userNickname")
     TaskWithoutProjectDto toDtoWithoutProject(Task task);
 }
