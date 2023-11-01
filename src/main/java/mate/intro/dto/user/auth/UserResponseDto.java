@@ -1,4 +1,4 @@
-package mate.intro.dto.user;
+package mate.intro.dto.user.auth;
 
 import lombok.Data;
 

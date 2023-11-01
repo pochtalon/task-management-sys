@@ -1,9 +1,15 @@
 package mate.intro.service.impl;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
-import mate.intro.dto.user.UserRegistrationRequestDto;
-import mate.intro.dto.user.UserResponseDto;
+import mate.intro.dto.role.UpdateRolesRequestDto;
+import mate.intro.dto.role.UpdateRolesResponseDto;
+import mate.intro.dto.user.UserInfoDto;
+import mate.intro.dto.user.UserUpdateInfoRequestDto;
+import mate.intro.dto.user.auth.UserRegistrationRequestDto;
+import mate.intro.dto.user.auth.UserResponseDto;
 import mate.intro.exception.EntityNotFoundException;
 import mate.intro.exception.RegistrationException;
 import mate.intro.mapper.UserMapper;
@@ -38,5 +44,57 @@ public class UserServiceImpl implements UserService {
         user.setRoles(Set.of(role));
         User savedUser = userRepository.save(user);
         return userMapper.toDto(savedUser);
+    }
+
+    @Override
+    public UpdateRolesResponseDto updateRoles(Long userId, UpdateRolesRequestDto rolesRequest) {
+        User user = userRepository.findById(userId).orElseThrow(() ->
+                new EntityNotFoundException("User with id: " + userId + " was not found."));
+        Set<Role> userRoles = getRolesForUser(rolesRequest);
+        user.setRoles(userRoles);
+        return userMapper.toUpdatedRolesDto(userRepository.save(user));
+    }
+
+    @Override
+    public UserInfoDto getUserInfo(User user) {
+        return userMapper.toInfoDto(user);
+
+    }
+
+    @Override
+    public UserInfoDto updateUserInfo(User user, UserUpdateInfoRequestDto infoRequest) {
+        userUpdate(user, infoRequest);
+        return userMapper.toInfoDto(userRepository.save(user));
+    }
+
+    private void userUpdate(User user, UserUpdateInfoRequestDto infoRequest) {
+        if (infoRequest.getPassword() != null
+                && infoRequest.getPasswordRepeat() != null
+                && infoRequest.getPassword().equals(infoRequest.getPasswordRepeat())) {
+            user.setPassword(passwordEncoder.encode(infoRequest.getPassword()));
+        }
+        if (infoRequest.getEmail() != null) {
+            user.setEmail(infoRequest.getEmail());
+        }
+        if (infoRequest.getNickname() != null) {
+            user.setNickname(infoRequest.getNickname());
+        }
+        if (infoRequest.getFirstName() != null) {
+            user.setFirstName(infoRequest.getFirstName());
+        }
+        if (infoRequest.getLastName() != null) {
+            user.setLastName(infoRequest.getLastName());
+        }
+    }
+
+    private Set<Role> getRolesForUser(UpdateRolesRequestDto rolesRequest) {
+        List<Role> roles = roleRepository.findAll();
+        Set<Role> userRoles = new HashSet<>();
+        for (Role role : roles) {
+            if (rolesRequest.getRoles().contains(role.getName().toString())) {
+                userRoles.add(role);
+            }
+        }
+        return userRoles;
     }
 }

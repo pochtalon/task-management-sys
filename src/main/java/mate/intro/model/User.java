@@ -33,7 +33,7 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false, unique = true)
-    private String username;
+    private String nickname;
     @Column(nullable = false)
     private String password;
     @Column(nullable = false, unique = true)
@@ -42,7 +42,7 @@ public class User implements UserDetails {
     private String firstName;
     @Column(name = "last_name", nullable = false)
     private String lastName;
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @JoinTable(name = "users_roles",
@@ -57,6 +57,10 @@ public class User implements UserDetails {
         return roles.stream()
                 .map(r -> new SimpleGrantedAuthority(r.getName().name()))
                 .toList();
+    }
+
+    public String getNickname() {
+        return nickname;
     }
 
     @Override
