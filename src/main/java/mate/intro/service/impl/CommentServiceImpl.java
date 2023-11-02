@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import mate.intro.dto.comment.CommentDto;
-import mate.intro.dto.comment.CommentRequestDto;
+import mate.intro.dto.comment.CreateCommentRequestDto;
 import mate.intro.exception.EntityNotFoundException;
 import mate.intro.mapper.CommentMapper;
 import mate.intro.model.Comment;
@@ -22,7 +22,7 @@ public class CommentServiceImpl implements CommentService {
     private final CommentMapper commentMapper;
 
     @Override
-    public CommentDto save(CommentRequestDto requestDto, User user, Long taskId) {
+    public CommentDto save(CreateCommentRequestDto requestDto, User user, Long taskId) {
         Comment comment = commentMapper.toModel(requestDto);
         comment.setUser(user);
         comment.setTask(taskRepository.findById(taskId).orElseThrow(() ->

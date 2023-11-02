@@ -29,7 +29,7 @@ public class TaskController {
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping
-    @Operation(summary = "Create new project", description = "Create new project")
+    @Operation(summary = "Create new task", description = "Create new task")
     public TaskDto addTask(@RequestBody @Valid CreateTaskRequestDto requestDto) {
         return taskService.save(requestDto);
     }

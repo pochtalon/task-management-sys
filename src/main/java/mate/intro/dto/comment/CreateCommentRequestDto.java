@@ -6,7 +6,7 @@ import lombok.experimental.Accessors;
 
 @Data
 @Accessors(chain = true)
-public class CommentRequestDto {
+public class CreateCommentRequestDto {
     @NotBlank
     private String text;
 }

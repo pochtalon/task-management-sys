@@ -6,7 +6,7 @@ import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import mate.intro.dto.comment.CommentDto;
-import mate.intro.dto.comment.CommentRequestDto;
+import mate.intro.dto.comment.CreateCommentRequestDto;
 import mate.intro.model.User;
 import mate.intro.service.CommentService;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -30,7 +30,7 @@ public class CommentController {
     @Operation(summary = "Create new project", description = "Create new project")
     public CommentDto addComment(Authentication authentication,
                                  @RequestParam Long taskId,
-                                 @RequestBody @Valid CommentRequestDto requestDto) {
+                                 @RequestBody @Valid CreateCommentRequestDto requestDto) {
         User user = (User) authentication.getPrincipal();
         return commentService.save(requestDto, user, taskId);
     }
