@@ -6,7 +6,7 @@ import mate.intro.dto.comment.CreateCommentRequestDto;
 import mate.intro.model.User;
 
 public interface CommentService {
-    CommentDto save(CreateCommentRequestDto requestDto, User user, Long taskId);
+    CommentDto save(CreateCommentRequestDto requestDto, User user);
 
     List<CommentDto> getCommentsByTaskId(Long taskId);
 }

@@ -27,12 +27,11 @@ public class CommentController {
 
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
     @PostMapping()
-    @Operation(summary = "Create new project", description = "Create new project")
+    @Operation(summary = "Create new comment", description = "Create new comment")
     public CommentDto addComment(Authentication authentication,
-                                 @RequestParam Long taskId,
                                  @RequestBody @Valid CreateCommentRequestDto requestDto) {
         User user = (User) authentication.getPrincipal();
-        return commentService.save(requestDto, user, taskId);
+        return commentService.save(requestDto, user);
     }
 
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")

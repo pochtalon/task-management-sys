@@ -48,11 +48,11 @@ public class Task {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "assignee_id", nullable = false, referencedColumnName = "id")
     private User assignee;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "task")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "task")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private List<Attachment> attachments;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "task")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "task")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private List<Comment> comments;

@@ -22,11 +22,11 @@ public class CommentServiceImpl implements CommentService {
     private final CommentMapper commentMapper;
 
     @Override
-    public CommentDto save(CreateCommentRequestDto requestDto, User user, Long taskId) {
+    public CommentDto save(CreateCommentRequestDto requestDto, User user) {
         Comment comment = commentMapper.toModel(requestDto);
         comment.setUser(user);
-        comment.setTask(taskRepository.findById(taskId).orElseThrow(() ->
-                new EntityNotFoundException("Can't find task with id " + taskId)));
+        comment.setTask(taskRepository.findById(requestDto.getTaskId()).orElseThrow(() ->
+                new EntityNotFoundException("Can't find task with id " + requestDto.getTaskId())));
         comment.setTimestamp(LocalDateTime.now());
         return commentMapper.toDto(commentRepository.save(comment));
     }
