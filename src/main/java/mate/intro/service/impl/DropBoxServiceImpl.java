@@ -25,6 +25,7 @@ public class DropBoxServiceImpl implements DropBoxService {
     private static final String CONTENT_TYPE = "Content-Type";
     private static final String TYPE = "application/octet-stream";
     private static final String DROPBOX_ARG = "Dropbox-API-Arg";
+    private static final int CONFLICT_409 = 409;
     @Value("${dropbox.token}")
     private String token;
     @Value("${upload.url}")
@@ -53,13 +54,13 @@ public class DropBoxServiceImpl implements DropBoxService {
         try {
             HttpResponse<String> response = httpClient
                     .send(request, HttpResponse.BodyHandlers.ofString());
-            if (response.statusCode() == 409) {
+            if (response.statusCode() == CONFLICT_409) {
                 throw new RuntimeException("File with name " + fileName + " is already exist. "
                         + "Change filename");
             }
             return objectMapper.readValue(response.body(), DropBoxResponseDto.class);
         } catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Can't upload file " + fileName, e);
         }
     }
 
