@@ -1,5 +1,6 @@
 version: "3.8"
 
+name: task-container
 services:
   postgresdb:
     image: postgres
