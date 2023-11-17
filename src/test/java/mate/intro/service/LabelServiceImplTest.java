@@ -15,8 +15,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import static org.mockito.ArgumentMatchers.anyLong;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -87,6 +91,14 @@ class LabelServiceImplTest {
         List<LabelDto> expected = Collections.emptyList();
         List<LabelDto> actual = labelService.getAll();
         assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Delete label")
+    public void delete_CallLabelRepoOnlyOnce() {
+        labelService.deleteLabel(LABEL_ID);
+        verify(labelRepository, times(1)).deleteById(anyLong());
+        verifyNoMoreInteractions(labelRepository);
     }
 
     @Test

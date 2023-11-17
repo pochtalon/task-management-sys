@@ -9,6 +9,7 @@ public class UpdateTaskRequestDto {
     private String name;
     private String description;
     private String priority;
+    private String status;
     private String dueDate;
     private Long projectId;
     private Long assigneeId;

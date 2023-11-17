@@ -26,13 +26,13 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public TaskDto save(CreateTaskRequestDto requestDto) {
         Task task = taskMapper.toModel(requestDto);
-        task.setStatus(Task.Status.NOT_STARTED);
         task.setProject(projectRepository.findById(requestDto.getProjectId()).orElseThrow(() ->
                 new EntityNotFoundException("Can't find project with id "
                         + requestDto.getProjectId())));
         task.setAssignee(userRepository.findById(requestDto.getAssigneeId()).orElseThrow(() ->
-                new EntityNotFoundException("Can't find project with id "
-                        + requestDto.getProjectId())));
+                new EntityNotFoundException("Can't find user with id "
+                        + requestDto.getAssigneeId())));
+        task.setStatus(Task.Status.NOT_STARTED);
         return taskMapper.toDto(taskRepository.save(task));
     }
 
