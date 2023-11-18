@@ -89,7 +89,7 @@ class TaskControllerTest {
 
     @BeforeEach
     @SneakyThrows
-    void addUsersAndProjects(@Autowired DataSource dataSource) {
+    void addUsersAndProjectsAndTasks(@Autowired DataSource dataSource) {
         try (Connection connection = dataSource.getConnection()) {
             connection.setAutoCommit(true);
             ScriptUtils.executeSqlScript(
