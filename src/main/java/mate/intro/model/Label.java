@@ -39,8 +39,8 @@ public class Label {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @JoinTable(name = "tasks_labels",
-            joinColumns = @JoinColumn(name = "task_id"),
-            inverseJoinColumns = @JoinColumn(name = "label_id"))
+            joinColumns = @JoinColumn(name = "label_id"),
+            inverseJoinColumns = @JoinColumn(name = "task_id"))
     private List<Task> tasks;
     @Column(nullable = false, name = "is_deleted")
     private boolean isDeleted = false;

@@ -216,7 +216,7 @@ class TaskControllerTest {
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @Test
     @DisplayName("Delete task by task id")
-    public void deleteProject_TaskId_Success() throws Exception {
+    public void deleteTask_TaskId_Success() throws Exception {
         MvcResult delete = mockMvc.perform(delete("/api/tasks/" + USER_TASK_ID)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -277,34 +277,3 @@ class TaskControllerTest {
                 .setAssigneeId(ASSIGNEE_ID);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
