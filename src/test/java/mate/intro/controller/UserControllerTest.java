@@ -44,10 +44,6 @@ class UserControllerTest {
     @Autowired
     private JwtUtil jwtUtil;
     private static final String BEARER = "Bearer ";
-    private static final String ADMIN_EMAIL = "admin@mail.com";
-    private static final String ADMIN_NICKNAME = "admin";
-    private static final String ADMIN_FIRST_NAME = "Robert";
-    private static final String ADMIN_LAST_NAME = "Heinlein";
     private static final Long USER_ID = 2L;
     private static final String USER_EMAIL = "johnny@mail.com";
     private static final String USER_NICKNAME = "mnemonic";
