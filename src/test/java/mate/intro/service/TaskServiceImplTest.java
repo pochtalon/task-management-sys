@@ -34,8 +34,6 @@ import java.util.Set;
 
 @ExtendWith(MockitoExtension.class)
 class TaskServiceImplTest {
-    @InjectMocks
-    TaskServiceImpl taskService;
     @Mock
     private TaskRepository taskRepository;
     @Mock
@@ -44,6 +42,8 @@ class TaskServiceImplTest {
     private UserRepository userRepository;
     @Mock
     private TaskMapper taskMapper;
+    @InjectMocks
+    TaskServiceImpl taskService;
     private static final Long TASK_ID = 8L;
     private static final Long ASSIGNEE_ID = 5L;
     private static final Long PROJECT_ID = 3L;

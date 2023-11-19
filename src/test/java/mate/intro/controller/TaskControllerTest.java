@@ -69,7 +69,6 @@ class TaskControllerTest {
     private static final String UP_DATE = "2025-01-02";
     private static final Long UP_ASSIGNEE = 1L;
 
-
     @BeforeAll
     static void beforeAll(
             @Autowired DataSource dataSource,
@@ -217,7 +216,7 @@ class TaskControllerTest {
     @Test
     @DisplayName("Delete task by task id")
     public void deleteTask_TaskId_Success() throws Exception {
-        MvcResult delete = mockMvc.perform(delete("/api/tasks/" + USER_TASK_ID)
+        mockMvc.perform(delete("/api/tasks/" + USER_TASK_ID)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();

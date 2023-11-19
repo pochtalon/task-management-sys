@@ -162,12 +162,12 @@ class ProjectControllerTest {
         assertNotNull(actual_first);
         assertEquals(NAME_FIRST, actual_first.getName());
 
-        MvcResult result12 = mockMvc.perform(get("/api/projects/" + PROJECT_ID_2)
+        MvcResult result = mockMvc.perform(get("/api/projects/" + PROJECT_ID_2)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();
         ProjectDto actual_second = objectMapper
-                .readValue(result12.getResponse().getContentAsString(), ProjectDto.class);
+                .readValue(result.getResponse().getContentAsString(), ProjectDto.class);
         assertNotNull(actual_second);
         assertEquals(NAME_SECOND, actual_second.getName());
     }
@@ -215,7 +215,7 @@ class ProjectControllerTest {
     )
     @DisplayName("Delete project by project id")
     public void deleteProject_ProjectId_Success() throws Exception {
-        MvcResult delete = mockMvc.perform(delete("/api/projects/" + PROJECT_ID_1)
+        mockMvc.perform(delete("/api/projects/" + PROJECT_ID_1)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();

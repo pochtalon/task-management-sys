@@ -26,14 +26,14 @@ import java.util.Optional;
 
 @ExtendWith(MockitoExtension.class)
 class CommentServiceImplTest {
-    @InjectMocks
-    CommentServiceImpl commentService;
     @Mock
     private CommentRepository commentRepository;
     @Mock
     private TaskRepository taskRepository;
     @Mock
     private CommentMapper commentMapper;
+    @InjectMocks
+    CommentServiceImpl commentService;
     private static final Long TASK_ID = 15L;
     private static final Long COMMENT_ID_FIRST = 1L;
     private static final String TEXT = "Text for comment";

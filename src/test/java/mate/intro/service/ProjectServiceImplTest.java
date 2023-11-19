@@ -34,8 +34,6 @@ import java.util.Optional;
 
 @ExtendWith(MockitoExtension.class)
 class ProjectServiceImplTest {
-    @InjectMocks
-    ProjectServiceImpl projectService;
     @Mock
     private ProjectRepository projectRepository;
     @Mock
@@ -44,6 +42,8 @@ class ProjectServiceImplTest {
     private ProjectMapper projectMapper;
     @Mock
     private TaskMapper taskMapper;
+    @InjectMocks
+    ProjectServiceImpl projectService;
     private static final Long USER_ID = 15L;
     private static final Long PROJECT_ID = 8L;
     private static final String NAME = "Name";

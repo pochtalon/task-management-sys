@@ -32,8 +32,6 @@ import java.util.Set;
 
 @ExtendWith(MockitoExtension.class)
 class UserServiceImplTest {
-    @InjectMocks
-    UserServiceImpl userService;
     @Mock
     private UserRepository userRepository;
     @Mock
@@ -42,6 +40,8 @@ class UserServiceImplTest {
     private UserMapper userMapper;
     @Mock
     private RoleRepository roleRepository;
+    @InjectMocks
+    UserServiceImpl userService;
     private static final Long USER_ID = 1L;
     private static final String EMAIL = "user@mail.com";
     private static final String PASSWORD = "password";

@@ -30,8 +30,6 @@ import java.util.Optional;
 
 @ExtendWith(MockitoExtension.class)
 class AttachmentServiceImplTest {
-    @InjectMocks
-    AttachmentServiceImpl attachmentService;
     @Mock
     private AttachmentRepository attachmentRepository;
     @Mock
@@ -40,6 +38,8 @@ class AttachmentServiceImplTest {
     private DropBoxService dropBoxService;
     @Mock
     private AttachmentMapper attachmentMapper;
+    @InjectMocks
+    AttachmentServiceImpl attachmentService;
     private static final Long TASK_ID = 10L;
     private static final String DROP_BOX_ID = "Dropbox id";
     private static final String PATH = "Dropbox path";

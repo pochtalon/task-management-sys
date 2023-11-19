@@ -30,14 +30,14 @@ import java.util.Optional;
 
 @ExtendWith(MockitoExtension.class)
 class LabelServiceImplTest {
-    @InjectMocks
-    LabelServiceImpl labelService;
     @Mock
     private LabelRepository labelRepository;
     @Mock
     private TaskRepository taskRepository;
     @Mock
     private LabelMapper labelMapper;
+    @InjectMocks
+    LabelServiceImpl labelService;
     private static final Long LABEL_ID = 7L;
     private static final String NAME = "Label name";
     private static final String COLOR = "RED";

@@ -175,7 +175,7 @@ class LabelControllerTest {
     @Test
     @DisplayName("Delete label by label id")
     public void deleteLabel_LabelId_Success() throws Exception {
-        MvcResult delete = mockMvc.perform(delete("/api/labels/" + LABEL_ID_1)
+        mockMvc.perform(delete("/api/labels/" + LABEL_ID_1)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();
