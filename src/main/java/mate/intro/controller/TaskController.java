@@ -45,7 +45,7 @@ public class TaskController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/{id}")
     @Operation(summary = "Update task by id", description = "Update task by id")
-    public TaskDto updateProject(@PathVariable Long id,
+    public TaskDto updateTask(@PathVariable Long id,
                                  @RequestBody UpdateTaskRequestDto updateRequest) {
         return taskService.updateTask(id, updateRequest);
     }
