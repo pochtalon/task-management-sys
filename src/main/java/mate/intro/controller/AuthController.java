@@ -1,6 +1,5 @@
 package mate.intro.controller;
 
-import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import mate.intro.dto.user.auth.UserLoginRequestDto;
@@ -22,14 +21,12 @@ public class AuthController {
     private final UserService userService;
     private final AuthenticationService authenticationService;
 
-    @Operation(summary = "register user")
     @PostMapping("/register")
     public UserResponseDto register(@RequestBody @Valid UserRegistrationRequestDto request)
             throws RegistrationException {
         return userService.register(request);
     }
 
-    @Operation(summary = "login user")
     @PostMapping("/login")
     public UserLoginResponseDto login(@RequestBody @Valid UserLoginRequestDto request) {
         return authenticationService.authenticate(request);
