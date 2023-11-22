@@ -27,7 +27,7 @@ Build plans, achieve goals and with this app whole world is at your feet!
 
 ## 🔗 Entity-Relationship Diagram
 
-![](images/Task diagram.png)
+![](images/task_diagram.png)
 
 ## 🛠️ Project Functionality:
 
