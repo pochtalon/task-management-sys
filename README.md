@@ -2,20 +2,20 @@
 
 ## 📜 Project description:
 
-One app to rule them all,<br />
-one app to find them,<br />
-One app to bring them all<br />
-and in the darkness bind them.<br />
+>One app to rule them all,<br />
+>one app to find them,<br />
+>One app to bring them all<br />
+>and in the darkness bind them.<br />
 
 Each Dark Lord needs the system for effectively managing his campaign.<br /> 
-The all-seeing Eye System allows you split your main campaign to different projects with own name, description, dates of starting and ending. Also, you can follow for its status. <br />
-The base for all achievements is building your own dream-team. The email/password access closes whole structure from average people, nicknames are needed for convenient communication between groups and role model makes variable access for your team to your plans. <br /> 
-For the best ruling of project flowing was applied the best strategy: divide and conquer. Creating flexible separated structure of tasks allows you to be prepared for any challenges on your way.
-Each task has a set of attributes for better control. Main of those is assignee, a person-executant who would be responsible for success or fail of this job. 
-The fields "status" and "dueDate" have to give some hints to assignee about his destiny, depending on the task result. But also you should remember: clear task description will bring closer you to your aims. <br />
-Comments allow your team to help each other improve their skills and faster finished the work. <br />
-The last system feature is using attachments: different files, that connected with a task and are stored somewhere in Palantir-cloud. It could be added by any team-mate for sharing info, ideas and approaches for solving task issues. <br />
-And the last sweet, but only for you, is label marked system for grouping tasks by only you needed and understood criteria. <br />
+The all-seeing Eye System allows you split your main campaign to different `projects` with own `name`, `description`, `dates` of starting and ending. Also, you can follow for its `status`. <br />
+The base for all achievements is building your own dream-team. The `email/password` access closes whole structure from average people, `nicknames` are needed for convenient communication between groups and `role` model makes variable access for your team to your plans. <br /> 
+For the best ruling of project flowing was applied the best strategy: divide and conquer. Creating flexible separated structure of `tasks` allows you to be prepared for any challenges on your way.
+Each `task` has a set of attributes for better control. Main of those is `assignee`, a person-executant who would be responsible for success or fail of this job. 
+The fields `status` and `dueDate` have to give some hints to `assignee` about his destiny, depending on the task result. But also you should remember: clear task `description` will bring closer you to your aims. <br />
+`Comments` allow your team to help each other improve their skills and faster finished the work. <br />
+The last system feature is using `attachments`: different files, that connected with a task and are stored somewhere in Palantir-cloud. It could be added by any team-mate for sharing info, ideas and approaches for solving task issues. <br />
+And the last sweet, but only for you, is `label` marked system for grouping tasks by only you needed and understood criteria. <br />
 
 Build plans, achieve goals and with this app whole world is at your feet!
 
@@ -31,7 +31,7 @@ Build plans, achieve goals and with this app whole world is at your feet!
 
 ## 🛠️ Project Functionality:
 
-User can have USER or ADMIN roles. USER role is assigned automatically to each newly registered user. One default user with role ADMIN is already added to database. <br />
+User can have `USER` or `ADMIN` roles. USER role is assigned automatically to each newly registered user. One default user with role ADMIN is already added to database. <br />
 Access types: 🟢 - unregistered user 🟡 - ADMIN role 🟠 - ADMIN or USER roles
 * AuthController
   * 🟢 login user;
